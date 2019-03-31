@@ -1,0 +1,12 @@
+{
+    "require": {
+        "symfony/console": "2.6.7",
+        "nirav/ninja-php": "@dev"
+    },
+    "autoload": {
+        "classmap": ["vendor/nirav/ninja-php/consoleApp/commands"]
+    },
+    "require-dev": {
+        "vlucas/phpdotenv": "^3.3"
+    }
+}
