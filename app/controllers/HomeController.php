@@ -1,8 +1,17 @@
 <?php
 
-    class HomeController extends Controller {
+use Ninja\Auth;
 
-        public function index() {
-            $this->view('home');
-        }
+class HomeController extends Controller {
+
+    public function index() {
+        $this->view('home');
     }
+
+    public function dashboard() {
+        if(Auth::guest())
+            redirect('auth/login');
+        else
+            $this->view('dashboard');
+    }
+}

@@ -8,6 +8,8 @@
 
     define('APP_URL' , getenv('APP_URL','http://localhost/'));
 
+    define('APP_ROOT' , getenv('APP_ROOT','http://localhost/'));
+
     # DATABASE PARAMS
 
     define('DB_DRIVER', strtolower(getenv('DB_CONNECTION')));
@@ -21,11 +23,3 @@
     define('DB_USERNAME', getenv('DB_USERNAME'));
 
     define('DB_PASSWORD', getenv('DB_PASSWORD'));
-
-    function public_path() {
-        return APP_URL . 'public/';
-    }
-
-    function app_path() {
-        return APP_URL . 'app/';
-    }

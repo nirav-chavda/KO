@@ -4,7 +4,11 @@
         "nirav/ninja-php": "@dev"
     },
     "autoload": {
-        "classmap": ["vendor/nirav/ninja-php/consoleApp/commands"]
+        "classmap": [
+            "vendor/nirav/ninja-php/consoleApp/commands",
+            "vendor/nirav/ninja-php/src",
+            "vendor/nirav/ninja-php/lib"
+        ]
     },
     "require-dev": {
         "vlucas/phpdotenv": "^3.3"
