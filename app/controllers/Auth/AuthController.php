@@ -90,7 +90,7 @@ class AuthController extends Controller {
             if(empty($data['email_error']) && empty($data['password_error'])) {
                 if($this->userModel->validate($data['email'],$data['password'])) {
                     Auth::set($data['email']);
-                    redirect('home/dashboard');
+                    redirect('dashboard');
                 } else {
                     $data['password_error'] = 'Password is not matched';
                 }
