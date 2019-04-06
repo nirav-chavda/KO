@@ -61,12 +61,12 @@ class User {
     public function getUser($key,$value) {
         $this->db->query('SELECT * , NULL AS password FROM ' . $this->table . ' WHERE ' . $key .' = :' . $key);
         $this->db->bind(':'. $key,$value);
-        $row = $this->db->first();
+        return $this->db->first();
     }
 
     public function getUsers($key,$value) {
         $this->db->query('SELECT * , NULL AS passowrd FROM ' . $this->table . ' WHERE ' . $key .' = :' . $key);
         $this->db->bind(':'. $key,$value);
-        $row = $this->db->get();
+       return $this->db->get();
     }
 }
