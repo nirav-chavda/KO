@@ -67,6 +67,6 @@ class User {
     public function getUsers($key,$value) {
         $this->db->query('SELECT * , NULL AS passowrd FROM ' . $this->table . ' WHERE ' . $key .' = :' . $key);
         $this->db->bind(':'. $key,$value);
-       return $this->db->get();
+        return $this->db->get();
     }
 }
