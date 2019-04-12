@@ -58,15 +58,26 @@ class User {
             return 0;
     }
 
-    public function getUser($key,$value) {
-        $this->db->query('SELECT * , NULL AS password FROM ' . $this->table . ' WHERE ' . $key .' = :' . $key);
-        $this->db->bind(':'. $key,$value);
-        return $this->db->first();
+    public function get($key=null, $name=null) {
+        if( empty($key) || empty($name) ) {
+            $sql = 'SELECT * , NULL AS password FROM ' . $this->table;
+            $this->db->query($sql);
+            return $this->db->get();
+        } else {
+            $sql = 'SELECT * , NULL AS password FROM ' . $this->table . ' WHERE ' . $key . ' = :' . $key;
+            $this->db->query($sql);
+            $this->db->bind(':' . $key ,$name);
+            return $this->db->get();
+        }        
     }
-
-    public function getUsers($key,$value) {
-        $this->db->query('SELECT * , NULL AS passowrd FROM ' . $this->table . ' WHERE ' . $key .' = :' . $key);
-        $this->db->bind(':'. $key,$value);
-        return $this->db->get();
+    public function first($key, $name) {
+        if( empty($key) || empty($name) ) {
+            die('No key or name passed');
+        } else {
+            $sql = 'SELECT * , NULL AS password FROM ' . $this->table . ' WHERE ' . $key . ' = :' . $key;
+            $this->db->query($sql);
+            $this->db->bind(':' . $key ,$name);
+            return $this->db->first();
+        }        
     }
 }
