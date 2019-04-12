@@ -17,7 +17,11 @@ class AuthController extends Controller {
                 'name'=> $_POST['name'],
                 'email'=> $_POST['email'],
                 'password'=> $_POST['password'],
-                'confirm_password'=> $_POST['confirm_password']
+                'confirm_password'=> $_POST['confirm_password'],
+                'name_error' => '',
+                'email_error' => '',
+                'password_error' => '',
+                'confirm_password_error' => '',
             ];
 
             if(empty($data['name']))
