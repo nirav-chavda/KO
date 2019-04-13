@@ -5,7 +5,7 @@ use Ninja\Auth;
 class AuthController extends Controller {
 
     public function __construct() {
-        $this->userModel = $this->model('User');    
+        $this->model = $this->model('User');    
     }
 
     public function register() {
@@ -28,7 +28,7 @@ class AuthController extends Controller {
 
             if(empty($data['email']))
                 $data['email_error'] = 'Please enter Email';
-            else if($this->userModel->checkEmail($data['email']))
+            else if($this->model->checkEmail($data['email']))
                 $data['email_error'] = 'Email is already taken';
 
             if(empty($data['password']))
@@ -43,7 +43,7 @@ class AuthController extends Controller {
 
             if(empty($data['name_error']) && empty($data['email_error']) && empty($data['password_error']) && empty($data['confirm_password_error']) ) {
                 
-                $this->userModel->insert([
+                $this->model->insert([
                     'email' => $data['email'],
                     'name' => $data['name'],
                     'password' => password_hash($data['password'], PASSWORD_DEFAULT)
@@ -84,14 +84,14 @@ class AuthController extends Controller {
             
             if(empty($data['email']))
                 $data['email_error'] = 'Please enter Email';
-            else if(!$this->userModel->checkEmail($data['email']))
+            else if(!$this->model->checkEmail($data['email']))
                 $data['email_error'] = 'No Acount Found with this email';
 
             if(empty($data['password']))
                 $data['password_error'] = 'Please enter Password';
 
             if(empty($data['email_error']) && empty($data['password_error'])) {
-                if($this->userModel->validate($data['email'],$data['password'])) {
+                if($this->model->validate($data['email'],$data['password'])) {
                     redirect('dashboard');
                 } else {
                     $data['password_error'] = 'Password is not matched';

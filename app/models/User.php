@@ -6,7 +6,7 @@ class User {
 
     public function __construct() {
         # taking connection
-        $this->db = new Model;
+        $this->db = new DB;
         $this->table = 'users';
     }
 
