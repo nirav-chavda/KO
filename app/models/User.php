@@ -5,7 +5,7 @@ class User {
     private $db;
 
     public function __construct() {
-        // taking connection
+        # taking connection
         $this->db = new Model;
         $this->table = 'users';
     }
@@ -52,8 +52,10 @@ class User {
         $this->db->bind(':email',$email);
         $row = $this->db->first();
 
-        if( $row && password_verify($password,$row->password))
+        if( $row && password_verify($password,$row->password)) {
+            Ninja\Auth::set($row->id);
             return 1;
+        }
         else
             return 0;
     }
