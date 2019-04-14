@@ -2,7 +2,8 @@
             
 class User extends Model {
 
-    private $db;
+    protected $db;
+    protected $table;
 
     public function __construct() {
         # taking connection
