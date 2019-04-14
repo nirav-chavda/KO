@@ -50,7 +50,7 @@ class User extends Model {
     }
 
     #Override
-    public function first($key, $name) {
+    public function first($key=null, $name=null) {
         if( empty($key) || empty($name) ) {
             $sql = 'SELECT * , NULL AS password FROM ' . $this->table;
             $this->db->query($sql);
