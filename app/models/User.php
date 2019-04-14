@@ -1,6 +1,6 @@
 <?php
             
-class User {
+class User extends Model {
 
     private $db;
 
@@ -20,32 +20,6 @@ class User {
             return 0;
     }
 
-    
-    public function insert($data) {
-            
-        $sql = 'INSERT INTO '. $this->table . '(';
-        $values = ' VALUES(';
-        
-        foreach ($data as $key => $value) {
-            $sql .= $key . ',';
-            $values .= ':' . $key . ',';
-        }
-
-        $sql = rtrim($sql,',');
-        $values = rtrim($values,',');
-
-        $sql .= ')';
-        $values .= ')';
-
-        $sql .= $values;
-
-        $this->db->query($sql);
-        foreach ($data as $key => $value) {
-            $this->db->bind(':' . $key , $value);
-        }
-        $this->db->execute();
-    }
-
     public function validate($email,$password) {
         
         $this->db->query('SELECT id,password FROM ' . $this->table . ' WHERE email = :email');
@@ -60,6 +34,7 @@ class User {
             return 0;
     }
 
+    #Override
     public function get($key=null, $name=null) {
         if( empty($key) || empty($name) ) {
             $sql = 'SELECT * , NULL AS password FROM ' . $this->table;
@@ -72,9 +47,13 @@ class User {
             return $this->db->get();
         }        
     }
+
+    #Override
     public function first($key, $name) {
         if( empty($key) || empty($name) ) {
-            die('No key or name passed');
+            $sql = 'SELECT * , NULL AS password FROM ' . $this->table;
+            $this->db->query($sql);
+            return $this->db->first();
         } else {
             $sql = 'SELECT * , NULL AS password FROM ' . $this->table . ' WHERE ' . $key . ' = :' . $key;
             $this->db->query($sql);
