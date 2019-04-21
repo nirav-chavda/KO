@@ -1,5 +1,8 @@
 <?php
 
+namespace App\Controllers;
+
+use Controller;
 use Ninja\Auth;
 
 class HomeController extends Controller {

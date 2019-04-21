@@ -1,5 +1,8 @@
 <?php
-            
+
+namespace App\Controllers\Auth;
+
+use Controller;
 use Ninja\Auth;
 
 class AuthController extends Controller {
