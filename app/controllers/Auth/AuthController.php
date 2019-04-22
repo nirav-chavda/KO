@@ -4,6 +4,8 @@ namespace App\Controllers\Auth;
 
 use Controller;
 use Ninja\Auth;
+use App\Middlewares\IsGuest;
+use App\Middlewares\IsAuth;
 
 class AuthController extends Controller {
 
@@ -12,6 +14,8 @@ class AuthController extends Controller {
     }
 
     public function register() {
+
+        new IsGuest;
 
         if($_SERVER['REQUEST_METHOD']=='POST') {
 
@@ -76,6 +80,8 @@ class AuthController extends Controller {
 
     public function login() {
 
+        new IsGuest;
+
         if($_SERVER['REQUEST_METHOD']=='POST') {
 
             $data = [
@@ -117,6 +123,9 @@ class AuthController extends Controller {
     }
 
     public function logout() {
+
+        new IsAuth;
+
         if($_SERVER['REQUEST_METHOD']!='POST')
             die('INVALID METHOD' . $_SERVER['REQUEST_METHOD'] .' USED . POST REQUIRED');
         else {
