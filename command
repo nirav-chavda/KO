@@ -11,5 +11,7 @@
     $application->add(new ServeCommand());
     $application->add(new MakeControllerCommand());
     $application->add(new MakeModelCommand());
+    $application->add(new MakeTableCommand());
+    $application->add(new DBMoveCommand());
 
     $application->run();
