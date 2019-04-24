@@ -1,7 +1,9 @@
 {
     "require": {
         "symfony/console": "2.6.7",
-        "nirav/ninja-php": "@dev"
+        "nirav/ninja-php": "@dev",
+        "illuminate/database": "^5.8",
+        "illuminate/events": "^5.8"
     },
     "autoload": {
         "classmap": [

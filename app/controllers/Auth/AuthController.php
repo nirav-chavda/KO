@@ -6,12 +6,9 @@ use Controller;
 use Ninja\Auth;
 use App\Middlewares\IsGuest;
 use App\Middlewares\IsAuth;
+use App\Models\User;
 
 class AuthController extends Controller {
-
-    public function __construct() {
-        $this->model = $this->model('User');    
-    }
 
     public function register() {
 
@@ -35,7 +32,7 @@ class AuthController extends Controller {
 
             if(empty($data['email']))
                 $data['email_error'] = 'Please enter Email';
-            else if($this->model->checkEmail($data['email']))
+            else if(User::checkEmail($data['email']))
                 $data['email_error'] = 'Email is already taken';
 
             if(empty($data['password']))
@@ -50,7 +47,7 @@ class AuthController extends Controller {
 
             if(empty($data['name_error']) && empty($data['email_error']) && empty($data['password_error']) && empty($data['confirm_password_error']) ) {
                 
-                $this->model->insert([
+                User::create([
                     'email' => $data['email'],
                     'name' => $data['name'],
                     'password' => password_hash($data['password'], PASSWORD_DEFAULT)
@@ -93,14 +90,14 @@ class AuthController extends Controller {
             
             if(empty($data['email']))
                 $data['email_error'] = 'Please enter Email';
-            else if(!$this->model->checkEmail($data['email']))
+            else if(!User::checkEmail($data['email']))
                 $data['email_error'] = 'No Acount Found with this email';
 
             if(empty($data['password']))
                 $data['password_error'] = 'Please enter Password';
 
             if(empty($data['email_error']) && empty($data['password_error'])) {
-                if($this->model->validate($data['email'],$data['password'])) {
+                if(User::validate($data['email'],$data['password'])) {
                     redirect('dashboard');
                 } else {
                     $data['password_error'] = 'Password is not matched';

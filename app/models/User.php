@@ -1,65 +1,50 @@
 <?php
-            
+
+namespace App\Models;
+
+use Ninja\Auth;
+use Illuminate\Database\Eloquent\Model as Model;
+
 class User extends Model {
 
-    protected $db;
-    protected $table;
+    protected $table = 'users';
 
-    public function __construct() {
-        # taking connection
-        $this->db = new DB;
-        $this->table = 'users';
-    }
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
 
-    public function checkEmail($email) {
-        $this->db->query('SELECT * FROM users WHERE email = :email');
-        $this->db->bind(':email',$email);
-        $row = $this->db->first();
+    protected $fillable = [
+        'name', 'email', 'password',
+    ];
+
+    /**
+    * The attributes that should be hidden for arrays.
+    *
+    * @var array
+    */
+
+    protected $hidden = [
+        'password',
+    ];
+
+    public static function checkEmail($email) {
+        $row = User::select('id')->where('email',$email)->first();
         if($row)
             return 1;
         else
             return 0;
     }
 
-    public function validate($email,$password) {
+    public static function validate($email,$password) {
         
-        $this->db->query('SELECT id,password FROM ' . $this->table . ' WHERE email = :email');
-        $this->db->bind(':email',$email);
-        $row = $this->db->first();
+        $row = User::where('email',$email)->first();
 
         if( $row && password_verify($password,$row->password)) {
-            Ninja\Auth::set($row->id);
+            Auth::set($row->id);
             return 1;
         }
-        else
-            return 0;
-    }
-
-    #Override
-    public function get($key=null, $name=null) {
-        if( empty($key) || empty($name) ) {
-            $sql = 'SELECT * , NULL AS password FROM ' . $this->table;
-            $this->db->query($sql);
-            return $this->db->get();
-        } else {
-            $sql = 'SELECT * , NULL AS password FROM ' . $this->table . ' WHERE ' . $key . ' = :' . $key;
-            $this->db->query($sql);
-            $this->db->bind(':' . $key ,$name);
-            return $this->db->get();
-        }        
-    }
-
-    #Override
-    public function first($key=null, $name=null) {
-        if( empty($key) || empty($name) ) {
-            $sql = 'SELECT * , NULL AS password FROM ' . $this->table;
-            $this->db->query($sql);
-            return $this->db->first();
-        } else {
-            $sql = 'SELECT * , NULL AS password FROM ' . $this->table . ' WHERE ' . $key . ' = :' . $key;
-            $this->db->query($sql);
-            $this->db->bind(':' . $key ,$name);
-            return $this->db->first();
-        }        
+        return 0;
     }
 }
