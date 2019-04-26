@@ -15,6 +15,7 @@
                     <input type="password" name="password" class="form-control form-control-lg <?= (!empty($data['password_error'])) ? 'is-invalid' : ''; ?>" value="<?=$data['password']; ?>">
                     <span class="invalid-feedback"><?= $data['password_error']; ?></span>
                 </div>
+                <?=csrf_field() ?>
                 <div class="row">
                     <div class="col">
                         <input type="submit" value="Login" class="btn btn-success btn-block">

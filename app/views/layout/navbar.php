@@ -20,7 +20,7 @@ use Ninja\Session;
                     <a class="dropdown-item" href="<?=APP_URL . '/auth/logout'?>" onclick="event.preventDefault();document.getElementById('logout-form').submit();" aria-expanded="false">
                         Logout
                     </a>
-                    <form id="logout-form" action="<?=APP_URL . '/auth/logout'?>" method="POST" style="display: none;"></form>
+                    <form id="logout-form" action="<?=APP_URL . '/auth/logout'?>" method="POST" style="display: none;"><?=csrf_field() ?></form>
                 </div>
             </li>
         <?php else: ?>

@@ -25,7 +25,7 @@
                         <input type="password" name="confirm_password" class="form-control form-control-lg <?=(!empty($data['confirm_password_error'])) ? 'is-invalid' : ''; ?>" value="<?=$data['confirm_password']; ?>">
                         <span class="invalid-feedback"><?=$data['confirm_password_error']; ?></span>
                     </div>
-
+                    <?=csrf_field() ?>
                     <div class="row">
                         <div class="col">
                         <input type="submit" value="Register" class="btn btn-success btn-block">
