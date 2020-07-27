@@ -7,10 +7,10 @@ Those who come from Core PHP can easily understand this
 
 ## Installation
 
-You can clone this or download this from [here](https://github.com/nirav-chavda/ninjaPHP)
+You can clone this or download this from [here](https://github.com/nirav-chavda/KO)
 
 ```bash
-git clone https://github.com/nirav-chavda/ninjaPHP.git
+git clone https://github.com/nirav-chavda/KO.git
 ```
 
 After cloning or downloading run
