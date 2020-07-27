@@ -1,5 +1,5 @@
-# NinjaPHP
-NinjaPHP is a php web mvc framework for developing website easily :)
+# KO
+KO is a php web mvc framework for developing website easily :)
 
 ## Audience
 

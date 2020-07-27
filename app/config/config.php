@@ -2,7 +2,7 @@
 
     # APP PARAMS
 
-    define('APP_NAME', env('APP_NAME','NinjaPHP'));
+    define('APP_NAME', env('APP_NAME','KO'));
 
     define('APP_ENV', env('APP_ENV','local'));
 

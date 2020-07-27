@@ -41,7 +41,7 @@ class User extends Model {
         
         $row = User::where('email',$email)->first();
 
-        if( $row && password_verify($password,$row->password)) {
+        if($row && password_verify($password,$row->password)) {
             Auth::set($row->id);
             return 1;
         }
