@@ -4,6 +4,7 @@
  */
 
 namespace App;
+use Closure;
 
 class Dictionary
 {
@@ -11,4 +12,9 @@ class Dictionary
         'auth' => \App\Middlewares\IsAuth::class,
         'guest' => \App\Middlewares\IsGuest::class,
     ];
+    
+    public function handle(Closure $next)
+    {
+        return next();   
+    }
 };
