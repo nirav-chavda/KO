@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Ninja\Auth;
 use Illuminate\Database\Eloquent\Model as Model;
+use Ninja\Request;
 
 class User extends Model {
 
@@ -31,6 +32,14 @@ class User extends Model {
 
     public static function checkEmail($email) {
         $row = User::select('id')->where('email',$email)->first();
+        if($row)
+            return 1;
+        else
+            return 0;
+    }
+    
+    public static function checkEmail(Request $request) {
+        $row = User::select('id')->where('email',$request->email)->first();
         if($row)
             return 1;
         else
