@@ -47,4 +47,12 @@ class User extends Model {
         }
         return 0;
     }
+    
+    public static function validateEmail($email) {
+        $row = User::select('id')->where('email',$email)->first();
+        if($row)
+            return 1;
+        else
+            return 0;
+    }
 }

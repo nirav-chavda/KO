@@ -9,4 +9,8 @@ class IsAuth {
         if(Auth::guest())
             redirect('auth/login');
     }
+    
+    public function handle(Closure $next) {
+        return $next();
+    }
 }
