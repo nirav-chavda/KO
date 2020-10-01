@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use Controller;
+use Ninja\Request;
 
 class HomeController extends Controller
 {
@@ -17,6 +18,11 @@ class HomeController extends Controller
     }
 
     public function dashboard()
+    {
+        $this->view('dashboard');
+    }
+    
+    public function getBody(Request $request)
     {
         $this->view('dashboard');
     }
