@@ -100,6 +100,10 @@ class AuthController extends Controller
                     $data['password_error'] = 'Password is not matched';
                 }
             }
+            if (empty($data['email']))
+                $data['email_error'] = 'Please provide valid Email';
+            else if (!User::checkEmail($data['email']))
+                $data['email_error'] = 'No Acount Found ';
 
             $this->view('auth/loginpage', $data);
         } else {

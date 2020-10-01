@@ -11,6 +11,6 @@ class IsAuth {
     }
     
     public function handle(Closure $next) {
-        $next();
+        return $next();
     }
 }
