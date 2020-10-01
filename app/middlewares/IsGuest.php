@@ -9,4 +9,8 @@ class IsGuest {
         if(!Auth::guest())
             redirect_back();
     }
+    
+    public function handle(Closure $next) {
+        return $next();
+    }
 }
