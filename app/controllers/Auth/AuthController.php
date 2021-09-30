@@ -118,7 +118,7 @@ class AuthController extends Controller
     public function logout()
     {
         if ($_SERVER['REQUEST_METHOD'] != 'POST')
-            die('INVALID METHOD' . $_SERVER['REQUEST_METHOD'] . ' USED . POST REQUIRED');
+            panic('INVALID METHOD' . $_SERVER['REQUEST_METHOD'] . ' USED . POST REQUIRED');
         else {
             Auth::deAuth();
             redirect('/');
