@@ -6,7 +6,8 @@ use Ninja\Auth;
 
 class IsAuth {
     public function __construct() {
-        if(Auth::guest())
+        if(Auth::guest()) {
             redirect('auth/login');
+        }
     }
 }
