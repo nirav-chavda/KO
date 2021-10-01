@@ -6,7 +6,8 @@ use Ninja\Auth;
 
 class IsGuest {
     public function __construct() {
-        if(!Auth::guest())
+        if(!Auth::guest()) {
             redirect_back();
+        }
     }
 }
